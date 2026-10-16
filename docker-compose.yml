@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postmarked-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postmarked
+      POSTGRES_PASSWORD: postmarked
+      POSTGRES_DB: postmarked
+    ports:
+      - '5433:5432'
+    volumes:
+      - postmarked_pgdata:/var/lib/postgresql/data
+
+volumes:
+  postmarked_pgdata:
