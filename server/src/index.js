@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { authRouter } from './routes/auth.js';
+import { lettersRouter } from './routes/letters.js';
 
 for (const key of ['DATABASE_URL', 'JWT_SECRET']) {
   if (!process.env[key]) {
@@ -25,6 +26,7 @@ app.use(cookieParser());
 
 app.get('/api/health', (req, res) => res.json({ ok: true, time: new Date() }));
 app.use('/api/auth', authRouter);
+app.use('/api/letters', lettersRouter);
 
 app.use((req, res) => res.status(404).json({ error: 'Такого маршруту немає' }));
 
