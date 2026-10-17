@@ -1,0 +1,17 @@
+:root {
+  --ink: #101a2e;
+  --paper: #f1f3f6;
+  --wax: #8e2f2a;
+  --line: #dde1e7;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; }
+.shell { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
+.masthead { display: flex; justify-content: space-between; padding: 2rem 0; border-bottom: 1px solid var(--line); }
+.envelope { display: block; background: #fff; border: 1px solid var(--line); padding: 1.25rem; margin-bottom: 1rem; color: inherit; text-decoration: none; }
+.seal { width: 4.5rem; height: 4.5rem; border-radius: 50%; background: var(--wax); color: #fff; display: grid; place-content: center; }
+.letter-sheet { max-width: 38rem; background: #fff; padding: 2.5rem; border: 1px solid var(--line); }
+.letter-sheet .body { white-space: pre-wrap; line-height: 1.8; }
+.error { border-left: 3px solid var(--wax); padding: .6rem .9rem; margin-bottom: 1rem; }
+.field { display: block; margin-bottom: 1rem; }
+input, textarea { width: 100%; padding: .6rem; box-sizing: border-box; }
+.button { background: var(--ink); color: #fff; padding: .6rem 1.2rem; border: 0; text-decoration: none; cursor: pointer; }
