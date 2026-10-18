@@ -1,17 +1,404 @@
 :root {
   --ink: #101a2e;
+  --ink-soft: #67717f;
   --paper: #f1f3f6;
+  --envelope: #ffffff;
   --wax: #8e2f2a;
+  --airmail: #1f4e9c;
   --line: #dde1e7;
+
+  --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  color-scheme: light;
 }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: system-ui, sans-serif; }
-.shell { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem 4rem; }
-.masthead { display: flex; justify-content: space-between; padding: 2rem 0; border-bottom: 1px solid var(--line); }
-.envelope { display: block; background: #fff; border: 1px solid var(--line); padding: 1.25rem; margin-bottom: 1rem; color: inherit; text-decoration: none; }
-.seal { width: 4.5rem; height: 4.5rem; border-radius: 50%; background: var(--wax); color: #fff; display: grid; place-content: center; }
-.letter-sheet { max-width: 38rem; background: #fff; padding: 2.5rem; border: 1px solid var(--line); }
-.letter-sheet .body { white-space: pre-wrap; line-height: 1.8; }
-.error { border-left: 3px solid var(--wax); padding: .6rem .9rem; margin-bottom: 1rem; }
-.field { display: block; margin-bottom: 1rem; }
-input, textarea { width: 100%; padding: .6rem; box-sizing: border-box; }
-.button { background: var(--ink); color: #fff; padding: .6rem 1.2rem; border: 0; text-decoration: none; cursor: pointer; }
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--airmail);
+}
+
+:focus-visible {
+  outline: 2px solid var(--airmail);
+  outline-offset: 2px;
+}
+
+/* ───────── каркас ───────── */
+
+.shell {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+}
+
+.masthead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 2rem 0 1.5rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 2.5rem;
+}
+
+.wordmark {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.masthead nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.masthead .who {
+  color: var(--ink-soft);
+}
+
+/* ───────── типографіка ───────── */
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.2;
+  margin: 0;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+.lede {
+  max-width: 34rem;
+  color: var(--ink-soft);
+  margin: 0.75rem 0 0;
+}
+
+.section-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 3rem 0 1.25rem;
+}
+
+.section-title h2 {
+  font-size: 1.25rem;
+}
+
+.section-title .count {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* ───────── кнопки й поля ───────── */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid var(--ink);
+  border-radius: 2px;
+  background: var(--ink);
+  color: #fff;
+  font: inherit;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 120ms ease;
+}
+
+.button:hover {
+  background: #1d2b48;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.button.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.button.ghost:hover {
+  background: rgba(16, 26, 46, 0.06);
+}
+
+.button.quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 0.4rem 0;
+}
+
+.button.quiet:hover {
+  color: var(--wax);
+  background: transparent;
+}
+
+.field {
+  display: block;
+  margin-bottom: 1.25rem;
+}
+
+.field > span {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.4rem;
+  color: var(--ink-soft);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+}
+
+textarea {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  resize: vertical;
+  min-height: 18rem;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--airmail);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 78, 156, 0.12);
+}
+
+.hint {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+}
+
+.error {
+  border-left: 3px solid var(--wax);
+  padding: 0.6rem 0.9rem;
+  background: rgba(142, 47, 42, 0.07);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+}
+
+/* ───────── вхід і реєстрація ───────── */
+
+.gate {
+  max-width: 24rem;
+  margin: 4rem auto 0;
+}
+
+.gate h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.gate p.lede {
+  margin-bottom: 2rem;
+}
+
+.gate .switch {
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+/* ───────── конверт ───────── */
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.envelope {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 1.75rem;
+  background: var(--envelope);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* авіапоштова смуга по лівому краю — тільки в доставлених */
+.envelope.open {
+  border-left: none;
+  padding-left: 1.75rem;
+  background-image: repeating-linear-gradient(
+    45deg,
+    var(--wax) 0 7px,
+    #fff 7px 14px,
+    var(--airmail) 14px 21px,
+    #fff 21px 28px
+  );
+  background-size: 6px 100%;
+  background-repeat: no-repeat;
+  background-position: left top;
+}
+
+.envelope .subject {
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  margin-bottom: 0.3rem;
+}
+
+.envelope .meta {
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+.envelope.sealed .subject {
+  color: var(--ink-soft);
+}
+
+/* воскова печатка з лічильником */
+.seal {
+  display: grid;
+  place-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  background: var(--wax);
+  color: #fff;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+}
+
+.seal .num {
+  font-family: var(--serif);
+  font-size: 1.375rem;
+}
+
+.seal .unit {
+  font-size: 0.6875rem;
+  opacity: 0.85;
+}
+
+.delivered-mark {
+  font-size: 0.8125rem;
+  color: var(--airmail);
+  white-space: nowrap;
+}
+
+.envelope.open:hover {
+  border-color: var(--ink);
+}
+
+/* ───────── читання листа ───────── */
+
+.letter-sheet {
+  max-width: 38rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 3rem 3.25rem;
+  margin-top: 2rem;
+}
+
+.letter-sheet h1 {
+  font-size: 1.625rem;
+  margin-bottom: 1.5rem;
+}
+
+.letter-sheet .body {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.letter-sheet .postmark {
+  margin-top: 2.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8125rem;
+  color: var(--ink-soft);
+}
+
+/* ───────── порожній стан ───────── */
+
+.empty {
+  border: 1px dashed var(--line);
+  padding: 2.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.empty p {
+  margin: 0 0 1.25rem;
+}
+
+/* ───────── форма листа ───────── */
+
+.compose {
+  max-width: 38rem;
+}
+
+.compose-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 40rem) {
+  .letter-sheet {
+    padding: 2rem 1.5rem;
+  }
+
+  .envelope {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .seal {
+    justify-self: start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
